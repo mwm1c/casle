@@ -1,11 +1,11 @@
 package castle;
 
 public class Room {
-	public String description;
-	public Room northExit;
-	public Room southExit;
-	public Room eastExit;
-	public Room westExit;
+	private String description;
+	private Room northExit;
+	private Room southExit;
+	private Room eastExit;
+	private Room westExit;
 
 	public Room(String description) {
 		this.description = description;
@@ -25,5 +25,37 @@ public class Room {
 	@Override
 	public String toString() {
 		return description;
+	}
+
+	// 返回房间的所有出口
+	public String getExitDesc() {
+		StringBuffer sb = new StringBuffer();
+		if (northExit != null)
+			sb.append("north ");
+		if (southExit != null)
+			sb.append("south ");
+		if (eastExit != null)
+			sb.append("east ");
+		if (westExit != null)
+			sb.append("west ");
+		return sb.toString();
+	}
+	
+	// 说明房间的某个方向有没有东西
+	public Room getExit(String direction) {
+		Room ret = null;
+		if(direction.equals("north")) {
+			ret = northExit;
+        }
+        if(direction.equals("east")) {
+        	ret = eastExit;
+        }
+        if(direction.equals("south")) {
+        	ret = southExit;
+        }
+        if(direction.equals("west")) {
+        	ret = westExit;
+        }
+		return ret;
 	}
 }
